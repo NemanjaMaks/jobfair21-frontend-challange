@@ -8,8 +8,13 @@ namespace Platformer.UI
 {
     public class LevelEndedPopup : MonoBehaviour
     {
+        #region Constants
+        private const string WON_TEXT = "LEVEL WON";
+        private const string LOST_TEXT = "LEVEL LOST";
+        #endregion
+
         #region Fields and Properties
-        
+
         [SerializeField] private BlurredBackground blurredBackground;
         [SerializeField] private TMP_Text lblTokens;
         [SerializeField] private TMP_Text lblEnemiesKilled;
@@ -26,7 +31,18 @@ namespace Platformer.UI
         {
             blurredBackground.Show();
             gameObject.SetActive(true);
-            
+
+            if (won)
+            {
+                lblTitle.text = WON_TEXT;
+                lblTitle.color = titleWonColor;
+            }
+            else
+            {
+                lblTitle.text = LOST_TEXT;
+                lblTitle.color = titleLostColor;
+            }
+
             lblTokens.text = GameDatabase.Instance.CurrentUser.Tokens.ToString();
             lblEnemiesKilled.text = GameDatabase.Instance.CurrentUser.EnemiesKilled.ToString();
             lblUsername.text = GameDatabase.Instance.CurrentUser.Username;
