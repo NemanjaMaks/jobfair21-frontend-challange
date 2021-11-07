@@ -14,6 +14,7 @@ namespace Platformer.Mechanics
     {
         public PatrolPath path;
         public AudioClip ouch;
+        public GameObject blood;
 
         internal PatrolPath.Mover mover;
         internal AnimationController control;
@@ -51,5 +52,12 @@ namespace Platformer.Mechanics
             }
         }
 
+        /// <summary>
+        /// Blood effect on death
+        /// </summary>
+        public void MakeBlood()
+        {
+            Instantiate(blood, transform.position, Quaternion.identity);
+        }
     }
 }
